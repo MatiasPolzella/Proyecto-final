@@ -1,0 +1,638 @@
+@import "variables.scss";
+@import "mixins.scss";
+@import "global.scss";
+@import "navbar.scss";
+@import "masthead.scss";
+@import "post.scss";
+@import "contact.scss";
+@import "footer.scss";
+@import "bootstrap-overrides.scss";
+
+// Variables
+
+$white:    #fff !default;
+$gray-100: #f8f9fa !default;
+$gray-200: #e9ecef !default;
+$gray-300: #dee2e6 !default;
+$gray-400: #ced4da !default;
+$gray-500: #adb5bd !default;
+$gray-600: #868e96 !default;
+$gray-700: #495057 !default;
+$gray-800: #343a40 !default;
+$gray-900: #212529 !default;
+$black:    #000 !default;
+
+$blue:    #007bff !default;
+$indigo:  #6610f2 !default;
+$purple:  #6f42c1 !default;
+$pink:    #e83e8c !default;
+$red:     #dc3545 !default;
+$orange:  #fd7e14 !default;
+$yellow:  #ffc107 !default;
+$green:   #28a745 !default;
+$teal:    #0085A1 !default;
+$cyan:    #17a2b8 !default;
+
+$primary:       $teal !default;
+$secondary:     $gray-600 !default;
+$success:       $green !default;
+$info:          $cyan !default;
+$warning:       $yellow !default;
+$danger:        $red !default;
+$light:         $gray-100 !default;
+$dark:          $gray-800 !default;
+
+// Styling for the productos page
+.post-preview {
+    > a {
+      color: $gray-900;
+      &:focus,
+      &:hover {
+        text-decoration: none;
+        color: $primary;
+      }
+      > .post-title {
+        font-size: 30px;
+        margin-top: 30px;
+        margin-bottom: 10px;
+      }
+      > .post-subtitle {
+        font-weight: 300;
+        margin: 0 0 10px;
+      }
+    }
+    > .post-meta {
+      font-size: 18px;
+      font-style: italic;
+      margin-top: 0;
+      color: $gray-600;
+      > a {
+        text-decoration: none;
+        color: $gray-900;
+        &:focus,
+        &:hover {
+          text-decoration: underline;
+          color: $primary;
+        }
+      }
+    }
+    @media only screen and (min-width: 768px) {
+      > a {
+        > .post-title {
+          font-size: 36px;
+        }
+      }
+    }
+  }
+
+  // Styling for the navbar
+#mainNav {
+    position: absolute;
+    border-bottom: 1px solid $gray-200;
+    background-color: white;
+    @include sans-serif-font;
+    .navbar-brand {
+      font-weight: 800;
+      color: $gray-800;
+    }
+    .navbar-toggler {
+      font-size: 12px;
+      font-weight: 800;
+      padding: 13px;
+      text-transform: uppercase;
+      color: $gray-800;
+    }
+    .navbar-nav {
+      > li.nav-item {
+        > a {
+          font-size: 12px;
+          font-weight: 800;
+          letter-spacing: 1px;
+          text-transform: uppercase;
+        }
+      }
+    }
+    @media only screen and (min-width: 992px) {
+      border-bottom: 1px solid transparent;
+      background: transparent;
+      .navbar-brand {
+        padding: 10px 20px;
+        color: $white;
+        &:focus,
+        &:hover {
+          color: fade-out($white, .2);
+        }
+      }
+      .navbar-nav {
+        > li.nav-item {
+          > a {
+            padding: 10px 20px;
+            color: $white;
+            &:focus,
+            &:hover {
+              color: fade-out($white, .2);
+            }
+          }
+        }
+      }
+    }
+    @media only screen and (min-width: 992px) {
+      -webkit-transition: background-color 0.2s;
+      -moz-transition: background-color 0.2s;
+      transition: background-color 0.2s;
+      /* Force Hardware Acceleration in WebKit */
+      -webkit-transform: translate3d(0, 0, 0);
+      -moz-transform: translate3d(0, 0, 0);
+      -ms-transform: translate3d(0, 0, 0);
+      -o-transform: translate3d(0, 0, 0);
+      transform: translate3d(0, 0, 0);
+      -webkit-backface-visibility: hidden;
+      backface-visibility: hidden;
+      &.is-fixed {
+        /* when the user scrolls down, we hide the header right above the viewport */
+        position: fixed;
+        top: -67px;
+        -webkit-transition: -webkit-transform 0.2s;
+        -moz-transition: -moz-transform 0.2s;
+        transition: transform 0.2s;
+        border-bottom: 1px solid darken($white, .05);
+        background-color: fade-out($white, .1);
+        .navbar-brand {
+          color: $gray-900;
+          &:focus,
+          &:hover {
+            color: $primary;
+          }
+        }
+        .navbar-nav {
+          > li.nav-item {
+            > a {
+              color: $gray-900;
+              &:focus,
+              &:hover {
+                color: $primary;
+              }
+            }
+          }
+        }
+      }
+      &.is-visible {
+        /* if the user changes the scrolling direction, we show the header */
+        -webkit-transform: translate3d(0, 100%, 0);
+        -moz-transform: translate3d(0, 100%, 0);
+        -ms-transform: translate3d(0, 100%, 0);
+        -o-transform: translate3d(0, 100%, 0);
+        transform: translate3d(0, 100%, 0);
+      }
+    }
+  }
+
+ // Mixins
+// Bootstrap Button Variant
+@mixin button-variant($color, $background, $border) {
+    color: $color;
+    border-color: $border;
+    background-color: $background;
+    &.focus,
+    &:focus {
+      color: $color;
+      border-color: darken($border, 25%);
+      background-color: darken($background, 10%);
+    }
+    &:hover {
+      color: $color;
+      border-color: darken($border, 12%);
+      background-color: darken($background, 10%);
+    }
+    &.active,
+    &:active,
+    .open > &.dropdown-toggle {
+      color: $color;
+      border-color: darken($border, 12%);
+      background-color: darken($background, 10%);
+      &.focus,
+      &:focus,
+      &:hover {
+        color: $color;
+        border-color: darken($border, 25%);
+        background-color: darken($background, 17%);
+      }
+    }
+    &.active,
+    &:active,
+    .open > &.dropdown-toggle {
+      background-image: none;
+    }
+    &.disabled,
+    &[disabled],
+    fieldset[disabled] & {
+      &.focus,
+      &:focus,
+      &:hover {
+        border-color: $border;
+        background-color: $background;
+      }
+    }
+    .badge {
+      color: $background;
+      background-color: $color;
+    }
+  }
+  @mixin transition-all() {
+    -webkit-transition: all 0.2s;
+    -moz-transition: all 0.2s;
+    transition: all 0.2s;
+  }
+  @mixin background-cover() {
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+  }
+  @mixin serif-font() {
+    font-family: 'Lora', 'Times New Roman', serif;
+  }
+  @mixin sans-serif-font() {
+    font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  }
+   
+  // Styling for the masthead
+header.masthead {
+    // TIP: Background images are set within the HTML using inline CSS!
+    margin-bottom: 50px;
+    background: no-repeat center center;
+    background-color: $gray-600;
+    background-attachment: scroll;
+    position: relative;
+    @include background-cover;
+    .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      background-color: $gray-900;
+      opacity: 0.5;
+    }
+    .page-heading,
+    .post-heading,
+    .site-heading {
+      padding: 200px 0 150px;
+      color: white;
+      @media only screen and (min-width: 768px) {
+        padding: 200px 0;
+      }
+    }
+    .page-heading,
+    .site-heading {
+      text-align: center;
+      h1 {
+        font-size: 50px;
+        margin-top: 0;
+      }
+      .subheading {
+        font-size: 24px;
+        font-weight: 300;
+        line-height: 1.1;
+        display: block;
+        margin: 10px 0 0;
+        @include sans-serif-font;
+      }
+      @media only screen and (min-width: 768px) {
+        h1 {
+          font-size: 80px;
+        }
+      }
+    }
+    .post-heading {
+      h1 {
+        font-size: 35px;
+      }
+      .meta,
+      .subheading {
+        line-height: 1.1;
+        display: block;
+      }
+      .subheading {
+        font-size: 24px;
+        font-weight: 600;
+        margin: 10px 0 30px;
+        @include sans-serif-font;
+      }
+      .meta {
+        font-size: 20px;
+        font-weight: 300;
+        font-style: italic;
+        @include serif-font;
+        a {
+          color: $white;
+        }
+      }
+      @media only screen and (min-width: 768px) {
+        h1 {
+          font-size: 55px;
+        }
+        .subheading {
+          font-size: 30px;
+        }
+      }
+    }
+  }
+
+  // Global styling for this template
+body {
+    font-size: 20px;
+    color: $gray-900;
+    @include serif-font;
+  }
+  
+  p {
+    line-height: 1.5;
+    margin: 30px 0;
+    a {
+      text-decoration: underline;
+    }
+  }
+  
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-weight: 800;
+    @include sans-serif-font;
+  }
+  
+  a {
+    color: $gray-900;
+    @include transition-all;
+    &:focus,
+    &:hover {
+      color: $primary;
+    }
+  }
+  
+  blockquote {
+    font-style: italic;
+    color: $gray-600;
+  }
+  
+  .section-heading {
+    font-size: 36px;
+    font-weight: 700;
+    margin-top: 60px;
+  }
+  
+  .caption {
+    font-size: 14px;
+    font-style: italic;
+    display: block;
+    margin: 0;
+    padding: 10px;
+    text-align: center;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+  }
+  
+  ::-moz-selection {
+    color: $white;
+    background: $primary;
+    text-shadow: none;
+  }
+  
+  ::selection {
+    color: $white;
+    background: $primary;
+    text-shadow: none;
+  }
+  
+  img::selection {
+    color: $white;
+    background: transparent;
+  }
+  
+  img::-moz-selection {
+    color: $white;
+    background: transparent;
+  }
+  
+  // Styling for the footer
+footer {
+    padding: 50px 0 65px;
+    .list-inline {
+      margin: 0;
+      padding: 0;
+    }
+    .copyright {
+      font-size: 14px;
+      margin-bottom: 0;
+      text-align: center;
+    }
+  }
+
+  // Styling for the contact page
+.floating-label-form-group {
+    font-size: 14px;
+    position: relative;
+    margin-bottom: 0;
+    padding-bottom: 0.5em;
+    border-bottom: 1px solid $gray-300;
+    input,
+    textarea {
+      font-size: 1.5em;
+      position: relative;
+      z-index: 1;
+      padding: 0;
+      resize: none;
+      border: none;
+      border-radius: 0;
+      background: none;
+      box-shadow: none !important;
+      @include serif-font;
+      &::-webkit-input-placeholder {
+        color: $gray-600;
+        @include serif-font;
+      }
+    }
+    label {
+      font-size: 0.85em;
+      line-height: 1.764705882em;
+      position: relative;
+      z-index: 0;
+      top: 2em;
+      display: block;
+      margin: 0;
+      -webkit-transition: top 0.3s ease, opacity 0.3s ease;
+      -moz-transition: top 0.3s ease, opacity 0.3s ease;
+      -ms-transition: top 0.3s ease, opacity 0.3s ease;
+      transition: top 0.3s ease, opacity 0.3s ease;
+      opacity: 0;
+    }
+    .help-block {
+      margin: 15px 0;
+    }
+  }
+  
+  .floating-label-form-group-with-value {
+    label {
+      top: 0;
+      opacity: 1;
+    }
+  }
+  
+  .floating-label-form-group-with-focus {
+    label {
+      color: $primary;
+    }
+  }
+  form .form-group:first-child .floating-label-form-group {
+    border-top: 1px solid $gray-300;
+  }
+
+  // Bootstrap overrides for this template
+.btn {
+    font-size: 14px;
+    font-weight: 800;
+    padding: 15px 25px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    border-radius: 0;
+    @include sans-serif-font;
+  }
+  
+  .btn-primary {
+    background-color: $primary;
+    border-color: $primary;
+    &:hover,
+    &:focus,
+    &:active {
+      color: $white;
+      background-color: darken($primary, 7.5) !important;
+      border-color: darken($primary, 7.5) !important;
+    }
+  }
+  
+  .btn-lg {
+    font-size: 16px;
+    padding: 25px 35px;
+  }
+
+  // Productos
+  
+  .container-table{
+    width: 90%;
+    background: white;
+    margin: 50px auto;
+    box-shadow: 0 0 10px #333;
+    
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: 50px;
+    }
+    
+    .table-title{
+    grid-column-start: 1;
+    grid-column-end: 5;
+    
+    background: rgba(40,65,120,1);
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    font-size: 1.9em;
+    }
+    
+    .table-header, .table-item{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    }
+    
+    .table-header{
+    font-weight: bold;
+    font-size: 1.5em;
+    }
+    
+    .table-item{
+    padding: 10px; 
+    font-size: 1.2em;
+    font-family: Arial, Helvetica, sans-serif;
+    }
+    
+    /* Estilos de la galeria */
+  .galeria {
+  width: 90%;
+  margin: auto;
+  list-style: none;
+  padding: 20px;
+  box-sizing: border-box;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around; }
+
+  .galeria li {
+  margin: 5px; }
+
+  .galeria img {
+  width: 150px;
+  height: 100px; }
+
+  /* estilos del modal */
+  .modal {
+  display: none; }
+
+  .modal:target {
+  display: block;
+  position: fixed;
+  background: rgba(0, 0, 0, 0.8);
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%; }
+
+  .modal h3 {
+  color: #fff;
+  font-size: 30px;
+  text-align: center;
+  margin: 15px 0px; }
+
+  .imagen {
+  width: 100%;
+  height: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center; }
+
+  .imagen a {
+  color: #fff;
+  font-size: 40px;
+  text-decoration: none;
+  margin: 0 10px; }
+
+  .imagen a:nth-child(2) {
+  margin: 0;
+  height: 100%;
+  flex-shrink: 2; }
+
+  .imagen img {
+  width: 500px;
+  height: 100%;
+  max-width: 100%;
+  border: 7px solid #fff;
+  box-sizing: border-box; }
+
+  .cerrar {
+  display: block;
+  background: #fff;
+  width: 25px;
+  height: 25px;
+  margin: 15px auto;
+  text-align: center;
+  text-decoration: none;
+  font-size: 25px;
+  color: #000;
+  padding: 5px;
+  border-radius: 50%;
+  line-height: 25px; }
