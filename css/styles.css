@@ -339,7 +339,7 @@ footer {
       color: #0085A1; }
 
 @media only screen and (min-width: 768px) {
-  .post-preview > a > .post-title {
+  > a > .post-title {
     font-size: 36px; } }
 
 #mainNav {
@@ -627,3 +627,11 @@ form .form-group:first-child .floating-label-form-group {
 .btn-lg {
   font-size: 16px;
   padding: 25px 35px; }
+
+.table {
+  margin-right: 10px;
+  overflow: auto;
+  white-space: nowrap; }
+
+.container {
+  font-size: 20px; }

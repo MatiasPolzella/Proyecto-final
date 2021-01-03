@@ -76,6 +76,8 @@ $dark:          $gray-800 !default;
         }
       }
     }
+    
+    }
     @media only screen and (min-width: 768px) {
       > a {
         > .post-title {
@@ -83,7 +85,7 @@ $dark:          $gray-800 !default;
         }
       }
     }
-  }
+  
 
   // Styling for the navbar
 #mainNav {
@@ -258,7 +260,7 @@ $dark:          $gray-800 !default;
    
   // Styling for the masthead
 header.masthead {
-    // TIP: Background images are set within the HTML using inline CSS!
+   
     margin-bottom: 50px;
     background: no-repeat center center;
     background-color: $gray-600;
@@ -517,7 +519,14 @@ footer {
     font-size: 16px;
     padding: 25px 35px;
   }
- 
-  
 
+  .table {
+    margin-right: 10px;
+    overflow: auto;
+    white-space: nowrap;
+  }
+
+  .container {
+    font-size: 20px;
   
+  }
